@@ -17,6 +17,7 @@
 		62FF4C5228228E9B00A43158 /* MenuSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF4C5128228E9B00A43158 /* MenuSection.swift */; };
 		62FF4C552822925200A43158 /* OngoingTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF4C542822925200A43158 /* OngoingTasksTableViewController.swift */; };
 		62FF4C57282292A100A43158 /* DoneTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF4C56282292A100A43158 /* DoneTasksTableViewController.swift */; };
+		62FF4C5928229CD900A43158 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FF4C5828229CD900A43158 /* NewTaskViewController.swift */; };
 		F750A70862108993E97526E8 /* Pods_iOS_To_Do_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C860944F8702BFA8D57A9F /* Pods_iOS_To_Do_App.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		62FF4C5128228E9B00A43158 /* MenuSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuSection.swift; sourceTree = "<group>"; };
 		62FF4C542822925200A43158 /* OngoingTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTasksTableViewController.swift; sourceTree = "<group>"; };
 		62FF4C56282292A100A43158 /* DoneTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTasksTableViewController.swift; sourceTree = "<group>"; };
+		62FF4C5828229CD900A43158 /* NewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		88C860944F8702BFA8D57A9F /* Pods_iOS_To_Do_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOS_To_Do_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,7 +95,6 @@
 				62BB0E1928226519004E5C3A /* Podfile */,
 				62BB0E0528226487004E5C3A /* AppDelegate.swift */,
 				62BB0E0728226487004E5C3A /* SceneDelegate.swift */,
-				62BB0E0928226487004E5C3A /* TasksViewController.swift */,
 				62BB0E0B28226487004E5C3A /* Main.storyboard */,
 				62BB0E0E2822648A004E5C3A /* Assets.xcassets */,
 				62BB0E102822648A004E5C3A /* LaunchScreen.storyboard */,
@@ -115,6 +116,8 @@
 			children = (
 				62FF4C542822925200A43158 /* OngoingTasksTableViewController.swift */,
 				62FF4C56282292A100A43158 /* DoneTasksTableViewController.swift */,
+				62BB0E0928226487004E5C3A /* TasksViewController.swift */,
+				62FF4C5828229CD900A43158 /* NewTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62BB0E0A28226487004E5C3A /* TasksViewController.swift in Sources */,
+				62FF4C5928229CD900A43158 /* NewTaskViewController.swift in Sources */,
 				62BB0E0628226487004E5C3A /* AppDelegate.swift in Sources */,
 				62FF4C5228228E9B00A43158 /* MenuSection.swift in Sources */,
 				62BB0E0828226487004E5C3A /* SceneDelegate.swift in Sources */,

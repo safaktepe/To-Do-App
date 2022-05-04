@@ -90,27 +90,100 @@
                         <outlet property="doneTasksContainerView" destination="GmF-Rk-m8G" id="YHo-oZ-hU1"/>
                         <outlet property="menuSegmentedControl" destination="ECY-TE-jR1" id="Nc8-kp-RB7"/>
                         <outlet property="ongoingTasksContainerView" destination="RDi-cJ-WQP" id="DDp-Yd-NKQ"/>
-                        <segue destination="ruc-2d-Mxl" kind="presentation" identifier="showAddNewTask" id="n5t-M5-FFw"/>
+                        <segue destination="ruc-2d-Mxl" kind="presentation" identifier="showNewTask" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="n5t-M5-FFw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="471.01449275362324" y="128.57142857142856"/>
         </scene>
-        <!--View Controller-->
+        <!--New Task View Controller-->
         <scene sceneID="Kcg-hR-exc">
             <objects>
-                <viewController id="ruc-2d-Mxl" sceneMemberID="viewController">
+                <viewController id="ruc-2d-Mxl" customClass="NewTaskViewController" customModule="iOS_To_Do_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jlf-67-myX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0WY-9b-Y6V">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3MG-fw-Xay" userLabel="Container View">
+                                        <rect key="frame" x="0.0" y="568" width="414" height="328"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Mne-OO-74J">
+                                                <rect key="frame" x="16" y="8" width="382" height="312"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your new task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5U-9Y-jse">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Nco-8y-FFe"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u43-9u-r2u">
+                                                        <rect key="frame" x="0.0" y="56" width="382" height="40"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiy-Aj-AGx">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="40" id="ZN3-2b-GLP"/>
+                                                                </constraints>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" title="Save">
+                                                                    <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                                                </buttonConfiguration>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="czk-is-g21">
+                                                        <rect key="frame" x="0.0" y="112" width="382" height="200"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="8mV-hi-YIm"/>
+                                                        </constraints>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Mne-OO-74J" firstAttribute="top" secondItem="3MG-fw-Xay" secondAttribute="top" constant="8" id="A6D-b3-QEf"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mne-OO-74J" secondAttribute="bottom" constant="8" id="bwK-Zf-FKf"/>
+                                            <constraint firstItem="Mne-OO-74J" firstAttribute="leading" secondItem="3MG-fw-Xay" secondAttribute="leading" constant="16" id="vQE-O0-wPy"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mne-OO-74J" secondAttribute="trailing" constant="16" id="w4x-0i-zBo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="3MG-fw-Xay" secondAttribute="bottom" id="cLv-f5-wli"/>
+                                    <constraint firstItem="3MG-fw-Xay" firstAttribute="leading" secondItem="0WY-9b-Y6V" secondAttribute="leading" id="cvg-V1-18v"/>
+                                    <constraint firstAttribute="trailing" secondItem="3MG-fw-Xay" secondAttribute="trailing" id="nhg-b8-f9r"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="CYW-iZ-KJn"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0WY-9b-Y6V" secondAttribute="bottom" id="K9M-hy-dPg"/>
+                            <constraint firstItem="0WY-9b-Y6V" firstAttribute="top" secondItem="jlf-67-myX" secondAttribute="top" id="e3G-2E-xqh"/>
+                            <constraint firstItem="0WY-9b-Y6V" firstAttribute="trailing" secondItem="CYW-iZ-KJn" secondAttribute="trailing" id="gXe-Ns-N6h"/>
+                            <constraint firstItem="0WY-9b-Y6V" firstAttribute="leading" secondItem="CYW-iZ-KJn" secondAttribute="leading" id="xcb-5Y-llH"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="0WY-9b-Y6V" id="owx-wb-JPd"/>
+                        <outlet property="containerView" destination="3MG-fw-Xay" id="abj-xl-SHj"/>
+                        <outlet property="containerViewBottomConstraint" destination="cLv-f5-wli" id="zxJ-3C-rxX"/>
+                        <outlet property="newTaskTextField" destination="P5U-9Y-jse" id="AFg-L9-ul3"/>
+                        <outlet property="saveButton" destination="Yiy-Aj-AGx" id="IfG-Vd-CiX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sS-Om-cnX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="129"/>
+            <point key="canvasLocation" x="1246.376811594203" y="128.57142857142856"/>
         </scene>
         <!--Ongoing Tasks Table View Controller-->
         <scene sceneID="i6f-op-U7t">

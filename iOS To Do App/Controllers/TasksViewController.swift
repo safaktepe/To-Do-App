@@ -57,7 +57,7 @@ class TasksViewController: UIViewController {
     
     
     @IBAction func addTaskButtonClicked(_ sender: UIButton) {
-        performSegue(withIdentifier: "showAddNewTask", sender: nil)
+        performSegue(withIdentifier: "showNewTask", sender: nil)
     }
     
 }
