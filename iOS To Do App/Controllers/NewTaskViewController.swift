@@ -17,6 +17,9 @@ class NewTaskViewController: UIInputViewController {
     private var subscribers = Set<AnyCancellable>()
     @Published private var taskString: String?
     
+    weak var delagate: TasksVCDelegate?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -87,4 +90,19 @@ class NewTaskViewController: UIInputViewController {
         
     }
     
+    
+    @IBAction func calendarButtonClicked(_ sender: Any) {
+    }
+    
+    
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        
+        guard let taskString = taskString else {
+            return
+        }
+        
+        let task = Task(title: taskString)
+        
+        delagate?.didAddTask(task)
+    }
 }

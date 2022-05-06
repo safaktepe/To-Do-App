@@ -122,11 +122,23 @@
                                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u43-9u-r2u">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u43-9u-r2u">
                                                         <rect key="frame" x="0.0" y="56" width="382" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiy-Aj-AGx">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aO7-ZQ-jQs">
+                                                                <rect key="frame" x="0.0" y="0.0" width="47" height="40"/>
+                                                                <state key="normal" title="Button"/>
+                                                                <buttonConfiguration key="configuration" style="plain" image="calendar" catalog="system"/>
+                                                                <connections>
+                                                                    <action selector="calendarButtonClicked:" destination="ruc-2d-Mxl" eventType="touchUpInside" id="Szz-Qx-E47"/>
+                                                                </connections>
+                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ME9-N1-sYY">
+                                                                <rect key="frame" x="63" y="0.0" width="243.5" height="40"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                            </view>
+                                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yiy-Aj-AGx">
+                                                                <rect key="frame" x="322.5" y="0.0" width="59.5" height="40"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="40" id="ZN3-2b-GLP"/>
                                                                 </constraints>
@@ -134,6 +146,9 @@
                                                                 <buttonConfiguration key="configuration" style="plain" title="Save">
                                                                     <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <action selector="saveButtonClicked:" destination="ruc-2d-Mxl" eventType="touchUpInside" id="tZ9-a2-H2Y"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -194,13 +209,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Pf9-CU-hic">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="127" id="Pf9-CU-hic" customClass="OngoingTaskTableViewCell" customModule="iOS_To_Do_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="127"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pf9-CU-hic" id="9Tp-qk-Xe0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="127"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="0Sb-Db-AuJ">
+                                            <rect key="frame" x="16" y="12" width="382" height="103"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GgV-KD-Kqq">
+                                                    <rect key="frame" x="0.0" y="0.0" width="24" height="103"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="xSx-1I-a8T"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="actionButtonClicked:" destination="Pf9-CU-hic" eventType="touchUpInside" id="qO8-BV-U2j"/>
+                                                    </connections>
+                                                </button>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fcZ-ZX-oXQ">
+                                                    <rect key="frame" x="40" y="0.0" width="342" height="103"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="some random text jksdjdkjdkj" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0b-P7-vtT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="342" height="83.5"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="due to 3 days " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-cr-K4T">
+                                                            <rect key="frame" x="0.0" y="83.5" width="342" height="19.5"/>
+                                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="0Sb-Db-AuJ" secondAttribute="trailing" constant="16" id="541-fx-gVI"/>
+                                        <constraint firstAttribute="bottom" secondItem="0Sb-Db-AuJ" secondAttribute="bottom" constant="12" id="5ht-I8-G4l"/>
+                                        <constraint firstItem="0Sb-Db-AuJ" firstAttribute="leading" secondItem="9Tp-qk-Xe0" secondAttribute="leading" constant="16" id="gBx-sa-Sok"/>
+                                        <constraint firstItem="0Sb-Db-AuJ" firstAttribute="top" secondItem="9Tp-qk-Xe0" secondAttribute="top" constant="12" id="sQP-8b-zVd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deadlineLabel" destination="Xkw-cr-K4T" id="zo4-f1-ckg"/>
+                                    <outlet property="titleLabel" destination="O0b-P7-vtT" id="vtk-9h-hFf"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -211,7 +271,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RsV-cg-9sC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="135" y="785"/>
+            <point key="canvasLocation" x="134.78260869565219" y="784.82142857142856"/>
         </scene>
         <!--Done Tasks Table View Controller-->
         <scene sceneID="i6O-gE-zLk">
@@ -261,6 +321,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="secondarySystemGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
