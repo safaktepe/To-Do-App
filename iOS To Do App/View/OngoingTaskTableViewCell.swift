@@ -10,9 +10,17 @@ import UIKit
 
 class OngoingTaskTableViewCell: UITableViewCell {
     
+    var actionButtonDidTap: (() -> Void)?
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var deadlineLabel: UILabel!
+    
+    func configure(with task: Task) {
+        titleLabel.text = task.title
+    }
+    
+    
     @IBAction func actionButtonClicked(_ sender: UIButton) {
-        
+        actionButtonDidTap? ()
     }
 }

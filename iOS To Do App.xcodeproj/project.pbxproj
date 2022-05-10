@@ -12,6 +12,7 @@
 		62451B4C28251C6A00287E95 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62451B4B28251C6A00287E95 /* DatabaseManager.swift */; };
 		62451B4F2825296300287E95 /* TasksVCDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62451B4E2825296300287E95 /* TasksVCDelegate.swift */; };
 		62451B5228258E0100287E95 /* OngoingTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62451B5128258E0100287E95 /* OngoingTaskTableViewCell.swift */; };
+		62AE8B29282A643800981CBA /* DoneTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62AE8B28282A643800981CBA /* DoneTaskTableViewCell.swift */; };
 		62BB0E0628226487004E5C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BB0E0528226487004E5C3A /* AppDelegate.swift */; };
 		62BB0E0828226487004E5C3A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BB0E0728226487004E5C3A /* SceneDelegate.swift */; };
 		62BB0E0A28226487004E5C3A /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62BB0E0928226487004E5C3A /* TasksViewController.swift */; };
@@ -34,6 +35,7 @@
 		62451B4B28251C6A00287E95 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		62451B4E2825296300287E95 /* TasksVCDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVCDelegate.swift; sourceTree = "<group>"; };
 		62451B5128258E0100287E95 /* OngoingTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingTaskTableViewCell.swift; sourceTree = "<group>"; };
+		62AE8B28282A643800981CBA /* DoneTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneTaskTableViewCell.swift; sourceTree = "<group>"; };
 		62BB0E0228226487004E5C3A /* iOS To Do App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS To Do App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62BB0E0528226487004E5C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62BB0E0728226487004E5C3A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				62451B5128258E0100287E95 /* OngoingTaskTableViewCell.swift */,
+				62AE8B28282A643800981CBA /* DoneTaskTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,9 +156,9 @@
 		62FF4C532822923400A43158 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				62BB0E0928226487004E5C3A /* TasksViewController.swift */,
 				62FF4C542822925200A43158 /* OngoingTasksTableViewController.swift */,
 				62FF4C56282292A100A43158 /* DoneTasksTableViewController.swift */,
-				62BB0E0928226487004E5C3A /* TasksViewController.swift */,
 				62FF4C5828229CD900A43158 /* NewTaskViewController.swift */,
 			);
 			path = Controllers;
@@ -288,6 +291,7 @@
 				62BB0E0828226487004E5C3A /* SceneDelegate.swift in Sources */,
 				62FF4C57282292A100A43158 /* DoneTasksTableViewController.swift in Sources */,
 				62FF4C552822925200A43158 /* OngoingTasksTableViewController.swift in Sources */,
+				62AE8B29282A643800981CBA /* DoneTaskTableViewCell.swift in Sources */,
 				62451B4C28251C6A00287E95 /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
