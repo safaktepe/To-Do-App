@@ -4,7 +4,7 @@ This is an application to maintain and organize our day-to-day tasks.
 
 
 # About App
-Firebase Auth, AutoLayout, UI Animation, FSCalendar, Loaf, Tableview, Protocols & Extensions, CocoaPods, Programmatic Layout (in CalenderView).
+Firebase Auth,Firestore, AutoLayout, UI Animation, FSCalendar, Loaf, Tableview, Protocols & Extensions, CocoaPods, Programmatic Layout (in CalenderView).
 
 # Features
 🔳 Sign Up - Log in - Log out. (Firebase Authentication) <br>
