@@ -17,10 +17,13 @@ class OngoingTaskTableViewCell: UITableViewCell {
     
     func configure(with task: Task) {
         titleLabel.text = task.title
-    }
-    
-    
-    @IBAction func actionButtonClicked(_ sender: UIButton) {
+        deadlineLabel.text  = task.deadline?.toDeadlineVersionString()
+        if task.deadline?.isOverDue() == true {
+            deadlineLabel.textColor = .systemRed 
+        }
+        
+        }
+      @IBAction func actionButtonClicked(_ sender: UIButton) {
         actionButtonDidTap? ()
     }
 }

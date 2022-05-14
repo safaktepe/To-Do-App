@@ -13,18 +13,30 @@ class NewTaskViewController: UIInputViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var deadlinelabel: UILabel!
     
     private var subscribers = Set<AnyCancellable>()
-    @Published private var taskString: String?
     
+    var taskToEdit: Task?
     weak var delagate: TasksVCDelegate?
+
     
+    @Published private var taskString: String?
+    @Published private var deadline: Date?
+    /* ------------------------------------------------------------------ */
+
+    private lazy var calenderView : CalendarView = {
+        let view = CalendarView()
+        view.delegate = self
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    override func viewDidLoad() {
+     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        observeForm()
         setupGesture()
+        observeForm()
         observeKeyboard()
     }
     
@@ -32,7 +44,31 @@ class NewTaskViewController: UIInputViewController {
         backgroundView.backgroundColor = UIColor.init(white: 0.3, alpha: 0.4)
         containerViewBottomConstraint.constant = -containerView.frame.height
         
+        if let taskToEdit = self.taskToEdit {
+            newTaskTextField.text = taskToEdit.title
+            taskString = taskToEdit.title
+            deadline = taskToEdit.deadline
+            saveButton.setTitle("Update", for: .normal)
+            //Update Calendar
+        }
+   }
+    
+    private func setupGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissMissViewController))
+        //tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
     }
+    
+    @objc private func dissMissViewController() {
+        dismiss(animated: true, completion: nil)
+        print("dismiss keyboard")
+     }
+    
+    private func dissMissCalendarView(completion: () -> Void ) {
+        calenderView.removeFromSuperview()
+        completion()
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -40,10 +76,7 @@ class NewTaskViewController: UIInputViewController {
     }
     
     
-    private func setupGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissMissViewController))
-        view.addGestureRecognizer(tapGesture)
-    }
+   
     
     //----- Keyboard activities. -------
     private func observeKeyboard() {
@@ -62,6 +95,8 @@ class NewTaskViewController: UIInputViewController {
         }, completion: nil)
         //End of animation
     }
+    
+    
     @objc func keyboardWillHide(_ notification: Notification) {
        containerViewBottomConstraint.constant = -containerView.frame.height
      }
@@ -71,9 +106,16 @@ class NewTaskViewController: UIInputViewController {
         return keyboardHeight
     }
     
-   @objc private func dissMissViewController() {
-        dismiss(animated: true, completion: nil)
+    func showCalender() {
+        view.addSubview(calenderView)
+        NSLayoutConstraint.activate([
+            calenderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            calenderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            calenderView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
     }
+    
+   
     // -----   End of keyboard codes. ------
     
     
@@ -87,11 +129,17 @@ class NewTaskViewController: UIInputViewController {
             self.saveButton.isEnabled = text?.isEmpty == false
         }.store(in: &subscribers)
         
+        $deadline.sink { date in
+            self.deadlinelabel.text = date?.toString() ?? ""
+        }.store(in: &subscribers)
+        
         
     }
     
     
     @IBAction func calendarButtonClicked(_ sender: Any) {
+        newTaskTextField.resignFirstResponder()
+        showCalender()
     }
     
     
@@ -101,8 +149,42 @@ class NewTaskViewController: UIInputViewController {
             return
         }
         
-        let task = Task(title: taskString)
+        let task = Task(title: taskString, deadline: deadline)
         
         delagate?.didAddTask(task)
     }
+} 
+
+extension NewTaskViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if calenderView.isDescendant(of: view){
+            if touch.view?.isDescendant(of: calenderView) == false {
+              //  dissMissCalendarView { [unowned self] in
+           //         self.newTaskTextField.becomeFirstResponder()
+                    print("dissmiss calendar")
+            //    }
+                }
+            return false
+                // if calendarview is added as subview, then when its tapped dont dissmiss it.
+        }
+        return true }
+}
+
+extension NewTaskViewController: CalanderViewDelegate {
+    func calendarViewDidSelecDate(date: Date) {
+        dissMissCalendarView { [unowned self] in
+            self.newTaskTextField.becomeFirstResponder()
+            deadline = date
+
+        }
+    }
+    
+    func calendarViewDidTapRemoveButton() {
+        dissMissCalendarView {
+            self.newTaskTextField.becomeFirstResponder()
+            self.deadline = nil
+        }
+    }
+    
+    
 }

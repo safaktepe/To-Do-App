@@ -25,7 +25,6 @@ class TasksViewController: UIViewController {
    
     private func setupSegmentedControl() {
         menuSegmentedControl.removeAllSegments()
-        
         MenuSection.allCases.enumerated().forEach { (index, section) in
             menuSegmentedControl.insertSegment(withTitle: section.rawValue, at: index, animated: false)
         }
@@ -55,8 +54,9 @@ class TasksViewController: UIViewController {
         }
     }
     
-  
-    
+    private func editTask(task: Task) {
+        performSegue(withIdentifier: "showEditTask", sender: task)
+        }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showNewTask",
@@ -66,6 +66,10 @@ class TasksViewController: UIViewController {
             let destination = segue.destination as? OngoingTasksTableViewController
             destination?.delegate = self
         }
+        else if segue.identifier == "showEditTask",
+            let destination = segue.destination as? NewTaskViewController, let taskToEdit = sender as? Task {
+            destination.taskToEdit = taskToEdit
+            }
     }
     
    
@@ -74,6 +78,7 @@ class TasksViewController: UIViewController {
         performSegue(withIdentifier: "showNewTask", sender: nil)
     }
     
+   
     private func deleteTask(id : String){
         databaseManager.deleteTask(id: id) { [weak self] (result) in
             switch result {
@@ -84,19 +89,23 @@ class TasksViewController: UIViewController {
             }
         }
     }
-    
 }
 
 
+
 extension TasksViewController: OngoingTasksTVCDelegate {
+    
         func showOptions(for task: Task) {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             guard let id = task.id else {  return }
             self.deleteTask(id: id)
-
-        }
+             }
+        let editAction = UIAlertAction(title: "Edit", style: .default) { [unowned self] _ in
+                self.editTask(task: task)
+            }
+        alertController.addAction(editAction)
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
