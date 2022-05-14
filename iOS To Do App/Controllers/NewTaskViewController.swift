@@ -18,7 +18,7 @@ class NewTaskViewController: UIInputViewController {
     private var subscribers = Set<AnyCancellable>()
     
     var taskToEdit: Task?
-    weak var delagate: TasksVCDelegate?
+    weak var delagate: NewTaskVCDelegate?
 
     
     @Published private var taskString: String?
@@ -38,6 +38,7 @@ class NewTaskViewController: UIInputViewController {
         setupGesture()
         observeForm()
         observeKeyboard()
+        calenderView.selectDate(date: taskToEdit?.deadline)
     }
     
     private func setupView()  {
@@ -55,12 +56,12 @@ class NewTaskViewController: UIInputViewController {
     
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dissMissViewController))
-        //tapGesture.delegate = self
+        tapGesture.delegate = self
         view.addGestureRecognizer(tapGesture)
     }
     
     @objc private func dissMissViewController() {
-        dismiss(animated: true, completion: nil)
+       dismiss(animated: true, completion: nil)
         print("dismiss keyboard")
      }
     
@@ -148,10 +149,20 @@ class NewTaskViewController: UIInputViewController {
         guard let taskString = taskString else {
             return
         }
+        var task = Task(title: taskString, deadline: deadline)
         
-        let task = Task(title: taskString, deadline: deadline)
+        if let id = taskToEdit?.id {
+            task.id = id
+        }
         
-        delagate?.didAddTask(task)
+        
+        if taskToEdit == nil {
+            delagate?.didAddTask(task)
+        }else{
+            delagate?.didEditTask(task)
+        }
+        
+        
     }
 } 
 
@@ -159,10 +170,10 @@ extension NewTaskViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if calenderView.isDescendant(of: view){
             if touch.view?.isDescendant(of: calenderView) == false {
-              //  dissMissCalendarView { [unowned self] in
-           //         self.newTaskTextField.becomeFirstResponder()
+              dissMissCalendarView { [unowned self] in
+                   self.newTaskTextField.becomeFirstResponder()
                     print("dissmiss calendar")
-            //    }
+                }
                 }
             return false
                 // if calendarview is added as subview, then when its tapped dont dissmiss it.

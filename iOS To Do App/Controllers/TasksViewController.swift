@@ -69,6 +69,7 @@ class TasksViewController: UIViewController {
         else if segue.identifier == "showEditTask",
             let destination = segue.destination as? NewTaskViewController, let taskToEdit = sender as? Task {
             destination.taskToEdit = taskToEdit
+            destination.delagate = self
             }
     }
     
@@ -112,13 +113,27 @@ extension TasksViewController: OngoingTasksTVCDelegate {
     }
 }
 
-extension TasksViewController: TasksVCDelegate {
+extension TasksViewController: NewTaskVCDelegate {
+    func didEditTask(_ task: Task) {
+        presentedViewController?.dismiss(animated: true, completion: {
+            guard let id = task.id else { return }
+            self.databaseManager.editTask(id: id, title: task.title, deadline: task.deadline) { result in
+                switch  result {
+                case .success:
+                        break
+                case .failure(let error):
+                    print("error: \(error.localizedDescription)")
+                }
+            }
+        })
+    }
+    
     func didAddTask(_ task: Task) {
         presentedViewController?.dismiss(animated: true, completion: { [unowned self] in
             self.databaseManager.addTask(task) { (result) in
                 switch  result {
                 case .success:
-                    print("yaay")
+                    print("Success")
                 case .failure(let error):
                     print("error: \(error.localizedDescription)")
                 }
